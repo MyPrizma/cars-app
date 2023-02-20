@@ -1,0 +1,88 @@
+<!-- Header -->
+<header class="header">
+  <div class="container">
+    <nav class="header__nav">
+      <a class="logo" href="#"><img src="../assets/images/common/logo.png" alt="LuxoRides Logo"></a>
+      <ul class="header__menu list">
+        <li class="header__menu-item"><a class="header__menu-link link" href="#">Главная</a></li>
+        <li class="header__menu-item"><a class="header__menu-link link" href="#">Автомобили</a></li>
+        <li class="header__menu-item"><a class="header__menu-link link" href="#">Бронирование авто</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- /Header -->
+<main class="main">
+  <!-- Hero -->
+  <section class="hero" [ngStyle]="bgPos">
+    <div class="container">
+      <div class="hero__content">
+        <h1 class="hero__title">Аренда премиальных автомобилей</h1>
+        <p class="hero__text">В нашем клубе имеется солидная коллекция спортивных автомобилей — от достаточно распространенных серийных машин до настоящего гоночного эксклюзива. Воспользуйтесь уникальной возможностью побывать за рулем настоящей легенды и узнать, на что она способна за пределами гоночной трассы!</p>
+        <button class="hero__btn" type="button" (click)="goScroll(cars)">Посмотреть автомобили</button>
+      </div>
+    </div>
+  </section>
+  <!-- /Hero -->
+  <!-- Cars -->
+  <section class="cars" #cars>
+    <div class="container">
+      <h2 class="cars__title">Наш автопарк</h2>
+      <div class="cars__catalog">
+        <!-- Cars Item - 1 -->
+        <div class="cars__catalog-item" *ngFor="let car of carsData">
+          <img class="cars__catalog-img" src="../assets/images/cars/{{car.img}}" alt="{{car.name}}">
+          <h3 class="cars__catalog-title">{{car.name}}</h3>
+          <ul class="cars__catalog-list list">
+            <li class="cars__catalog-list-item cars__catalog-list-item_ico_transmission">
+              <!-- before -->
+              <span class="cars__catalog-term">Коробка</span>
+              <span class="cars__catalog-desc">{{car.transmission}}</span>
+            </li>
+            <li class="cars__catalog-list-item cars__catalog-list-item_ico_wheel">
+              <!-- before -->
+              <span class="cars__catalog-term">Двигатель</span>
+              <span class="cars__catalog-desc">{{car.engine}} л.с.</span>
+            </li>
+            <li class="cars__catalog-list-item cars__catalog-list-item_ico_year">
+              <!-- before -->
+              <span class="cars__catalog-term">Год выпуска</span>
+              <span class="cars__catalog-desc">{{car.year}}</span>
+            </li>
+          </ul>
+          <button class="cars__catalog-btn" type="button" (click)="goScroll(price, car)">Забронионировать</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /Cars -->
+  <!-- Price -->
+  <section class="price" #price>
+    <div class="price__container container">
+      <h2 class="price__title">Узнать цену и забронировать</h2>
+      <div class="price__content">
+        <p class="price__text">
+          Заполните данные, и мы перезвоним вам для уточнения всех деталей бронирования
+        </p>
+        <form class="price__form" [formGroup]="priceForm">
+          <input class="price__form-input" id="name" type="text" placeholder="Ваше имя" formControlName="name">
+          <input class="price__form-input" id="phone" type="tel" placeholder="Ваш телефон" formControlName="phone">
+          <input class="price__form-input" id="car" type="text" placeholder="Автомобиль, который вас интересует" formControlName="car">
+          <button class="price__form-btn" type="button" (click)="onSubmit()" [disabled]="!priceForm.valid">Узнать цену</button>
+        </form>
+        <img class="price__img" src="../assets/images/price/rolls.png" alt=" " [ngStyle]="trans">
+      </div>
+    </div>
+  </section>
+  <!-- /Price -->
+</main>
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__content">
+      <a class="logo" href="#"><img src="../assets/images/common/logo.png" alt="LuxoRides Logo"></a>
+      <p class="footer__text">Все права защищены</p>
+    </div>
+  </div>
+</footer>
+<!-- /Footer -->
